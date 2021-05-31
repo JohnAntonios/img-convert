@@ -1,6 +1,6 @@
 {
   "watch": ["src"],
   "ext": "ts",
-  "exec": "yarn build:server && yarn start:dev",
+  "exec": "yarn build:server && yarn build:assets && yarn start:dev",
   "legacyWatch": true
 }
