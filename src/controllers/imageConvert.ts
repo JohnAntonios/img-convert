@@ -1,18 +1,19 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { MultipartFile } from "fastify-multipart";
 import sharp from "sharp";
+import { OutputFormats } from "../constants/outputFormats";
 
-interface ImageUploadRequest {
+interface ImageConvertRequest {
   Body: {
     outputFormat: {
-      value: "jpg" | "png";
+      value: OutputFormats;
     };
     inputImage: MultipartFile;
   };
 }
 
 export default async (
-  request: FastifyRequest<ImageUploadRequest>,
+  request: FastifyRequest<ImageConvertRequest>,
   reply: FastifyReply
 ) => {
   const outputFormat = request.body.outputFormat.value;

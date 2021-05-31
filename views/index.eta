@@ -1,17 +1,25 @@
 <% layout('./layout') %>
 
 <div class="container mb-4">
-  <form action='/image-upload' method='post' enctype='multipart/form-data'>
+  <form action='/image-convert' method='post' enctype='multipart/form-data'>
     <div class="mb-3">
       <label for="inputImage" class="form-label">Input Image</label>
       <input name="inputImage" class="form-control" type="file" id="inputImage" 
             accept="image/*" required>
     </div>
-    <select class="form-select mb-3" aria-label="Select output format" name="outputFormat" required>
-      <option disabled selected value>Output Format</option>
-      <option value="jpg">JPG</option>
-      <option value="png">PNG</option>
-    </select>
-    <button type="submit" class="btn btn-primary w-50 text-center d-block mx-auto">Convert</button>
+    <div class="mb-4">
+      <label for="outputFormat" class="form-label">Output Format</label>
+      <select class="form-select" aria-label="Select output format" name="outputFormat" required>
+        <option disabled selected value>Output Format</option>
+        <% it.outputFormats.forEach(function(outputFormat){ %>
+          <option value="<%= outputFormat %>"><%= outputFormat.toUpperCase() %></option>
+        <% }) %>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary w-50 text-center d-block mx-auto">
+      <span id="convert-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+      Convert
+    </button>
   </form>
 </div>
+<script src="js/submit-progress.js" async defer></script>
