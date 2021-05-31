@@ -4,11 +4,11 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "nodemon --config config/nodemon.json",
     "start:dev": "node dist/index.js",
     "start": "cross-env NODE_ENV=production node dist/index.js",
-    "build:server": "swc src -d dist --config-file server.swcrc",
-    "build:assets": "swc assets -d assets-dist -s --config-file assets.swcrc"
+    "build:server": "swc src -d dist --config-file config/server.swcrc",
+    "build:assets": "swc assets -d dist-assets -s --config-file config/assets.swcrc"
   },
   "dependencies": {
     "eta": "^1.12.1",

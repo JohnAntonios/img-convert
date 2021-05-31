@@ -14,7 +14,7 @@ const fastify = Fastify({ logger: true });
   fastify.register(pov, { engine: { eta }, root: path.resolve("views") });
   fastify.register(multipart, { attachFieldsToBody: true });
   fastify.register(fastifyStatic, {
-    root: path.resolve("assets-dist"),
+    root: path.resolve("dist-assets"),
   });
 
   // Routes
