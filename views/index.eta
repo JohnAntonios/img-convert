@@ -3,18 +3,37 @@
 <div class="container mb-4">
   <form action='/image-convert' method='post' enctype='multipart/form-data'>
     <div class="mb-3">
-      <label for="inputImage" class="form-label">Input Image</label>
+      <label for="inputImage" class="form-label">Input Image *</label>
       <input name="inputImage" class="form-control" type="file" id="inputImage" 
             accept="image/*" required>
     </div>
     <div class="mb-4">
-      <label for="outputFormat" class="form-label">Output Format</label>
+      <label for="outputFormat" class="form-label">Output Format *</label>
       <select class="form-select" aria-label="Select output format" name="outputFormat" required>
         <option disabled selected value>Output Format</option>
         <% it.outputFormats.forEach(function(outputFormat){ %>
           <option value="<%= outputFormat %>"><%= outputFormat.toUpperCase() %></option>
         <% }) %>
       </select>
+    </div>
+    <div class="mb-4 accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button collapsed border border-1 rounded-1" type="button" data-bs-toggle="collapse" data-bs-target="#flush-outputOptions" aria-expanded="false" aria-controls="flush-outputOptions">
+            Output Options
+          </button>
+        </h2>
+        <div id="flush-outputOptions" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <div>
+              <label for="outputOptionsQuality" class="form-label">Quality:
+                <strong><span id="outputOptionsQualityDisplay">80</span></strong>
+              </label>
+              <input name="outputOptionsQuality" type="range" class="form-range" id="outputOptionsQuality" min="1" max="100" value="80" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <button type="submit" class="btn btn-primary w-50 text-center d-block mx-auto">
       <span id="convert-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
@@ -23,3 +42,4 @@
   </form>
 </div>
 <script src="js/submit-progress.js" async defer></script>
+<script src="js/output-quality-display.js" async defer></script>

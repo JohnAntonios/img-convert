@@ -8,6 +8,9 @@ interface ImageConvertRequest {
     outputFormat: {
       value: OutputFormats;
     };
+    outputOptionsQuality: {
+      value: string;
+    };
     inputImage: MultipartFile;
   };
 }
@@ -18,9 +21,11 @@ export default async (
 ) => {
   const outputFormat = request.body.outputFormat.value;
   const inputImage = request.body.inputImage;
-
+  const outputQuality = parseInt(request.body.outputOptionsQuality.value, 10);
   const imageBuffer = await inputImage.toBuffer();
-  const outBuffer = await sharp(imageBuffer).toFormat(outputFormat).toBuffer();
+  const outBuffer = await sharp(imageBuffer)
+    .toFormat(outputFormat, { quality: outputQuality })
+    .toBuffer();
 
   reply.header(
     "Content-Disposition",
