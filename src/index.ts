@@ -22,7 +22,7 @@ const fastify = Fastify({ logger: true });
   fastify.register(indexPage);
 
   try {
-    await fastify.listen(3000);
+    await fastify.listen(3000, "0.0.0.0");
   } catch (error) {
     fastify.log.error(error);
     process.exit(1);
