@@ -5,13 +5,13 @@ const spinner = document.querySelector("span#convert-spinner");
 const toggleSpinnerInButton = (showSpinner: boolean): void => {
   submitBtn.disabled = showSpinner;
   if (showSpinner) {
-    spinner.classList.remove("d-none");
+    spinner?.classList.remove("d-none");
   } else {
-    spinner.classList.add("d-none");
+    spinner?.classList.add("d-none");
   }
 };
 
-form.addEventListener("submit", () => {
+form?.addEventListener("submit", () => {
   toggleSpinnerInButton(true);
 });
 

@@ -4,5 +4,5 @@ const rangeEl = document.getElementById(
 ) as HTMLInputElement;
 
 rangeEl.addEventListener("change", () => {
-  displayEl.textContent = rangeEl.value;
+  if (displayEl) displayEl.textContent = rangeEl.value;
 });
